@@ -2,47 +2,46 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] float animationSpeed;
+    public float GetAnimationSpeed { get { return animationSpeed; } }
+    static GameManager _instance;
+    public static GameManager Instance { get { return _instance; } }
+
     PlayerMovement[] robots;
+    int robotCounter;
     RaycastHit hit;
     LevelManager lvlManager;
     Vector3 mouseLocation;
     bool robotsStarted, playerWon;
     private void Awake()
     {
+        if (Instance == null)
+            _instance = this;
+        else
+            Destroy(gameObject);
+
+        robots = FindObjectsOfType<PlayerMovement>();
+        robotCounter = 2;
         lvlManager = GetComponent<LevelManager>();
     }
     public void PlayerWon()
     {
         playerWon = true;
         Debug.Log("Player won!!");
+        GetComponent<MovementManager>().StopMovementCode();
         lvlManager.LevelCompleted();
     }
     void Update()
     {
-        //if (robotsStarted && !playerWon)
-        //{
-        //    int robotsDone = 0;
-        //    foreach (var robot in robots)
-        //    {
-        //        if (!robot.isRobotMoving && (robot.GetBatteryValue() <= 0 || robot.GetEventQueueLength() <= 0))
-        //        {
-        //            robotsDone++;
-        //        }
-        //    }
-        //    if (robotsDone == robots.Length)
-        //    {
-        //        Invoke("RestartCheck", 1);
-        //    }
-        //    return;
-        //}
         if (Input.GetMouseButtonDown(0))
             mouseLocation = Input.mousePosition;
         if (Input.GetMouseButtonUp(0) && Vector2.Distance(Input.mousePosition, mouseLocation) < 5f)
         {
-            if (EventSystem.current.IsPointerOverGameObject())
+            if (EventSystem.current.IsPointerOverGameObject() || IsPointerOverUIObject() ||  robotsStarted)
                 return;
 
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -56,9 +55,11 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-    void RestartCheck()
+    public void RobotDied()
     {
-        if (!playerWon)
+        print(robotCounter);
+        robotCounter--;
+        if (robotCounter <= 0)
         {
             lvlManager.RestartLevel();
         }
@@ -67,15 +68,25 @@ public class GameManager : MonoBehaviour
     public void StartRobots()
     {
         robotsStarted = true;
-        robots = FindObjectsOfType<PlayerMovement>();
-        foreach (PlayerMovement robot in robots)
-        {
-            robot.StartRobot();
-        }
+        MovementManager.Instance.BeginCode();
+        //robots = FindObjectsOfType<PlayerMovement>();
+        //foreach (PlayerMovement robot in robots)
+        //{
+        //    robot.StartRobot();
+        //}
     }
-
-    public bool IsMenuOpen()
+    bool isMenuOpen;
+    public bool IsMenuOpen { get { return isMenuOpen; } }
+    public void ChangeMenuState(bool menuIsOpen)
     {
-        return false;
+        isMenuOpen = menuIsOpen;
+    }
+    private bool IsPointerOverUIObject()
+    {
+        PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
+        eventDataCurrentPosition.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+        List<RaycastResult> results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
+        return results.Count > 0;
     }
 }

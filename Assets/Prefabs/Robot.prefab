@@ -90,21 +90,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ed653f161e44884ba5edeb4cf199a44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8238129734625189070}
-        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
-        m_MethodName: WaitPlayer
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  methodName: 6
 --- !u!114 &276450492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -436,7 +422,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
+  m_BlockingObjects: 3
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -1128,21 +1114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ed653f161e44884ba5edeb4cf199a44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8238129734625189070}
-        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
-        m_MethodName: JumpPlayer
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  methodName: 3
 --- !u!114 &945770690
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1289,21 +1261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ed653f161e44884ba5edeb4cf199a44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8238129734625189070}
-        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
-        m_MethodName: RotatePlayerLeft
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: -90
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  methodName: 5
 --- !u!114 &968645087
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1450,21 +1408,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ed653f161e44884ba5edeb4cf199a44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8238129734625189070}
-        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
-        m_MethodName: RotatePlayerRight
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 90
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  methodName: 4
 --- !u!114 &1198966552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1789,18 +1733,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
         m_CallState: 2
 --- !u!1 &1697410499
 GameObject:
@@ -2371,21 +2303,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ed653f161e44884ba5edeb4cf199a44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8238129734625189070}
-        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
-        m_MethodName: MovePlayer
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  methodName: 1
 --- !u!114 &2127433523
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2501,7 +2419,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.4339623, g: 0.4339623, b: 0.4339623, a: 0.42745098}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -2564,14 +2482,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridPosition: {x: 0, y: 3, z: 0}
+  isPushable: 1
   actionItem: {fileID: 1454666150552319414, guid: f507ac68c1652c6499d7a3f720d114e7, type: 3}
   actionsCanvas: {fileID: 448180259}
-  gameHUD: {fileID: 0}
   text: {fileID: 736883945}
   textOffset: 100
   batteryText: {fileID: 835837607}
   batteryImage: {fileID: 1984837559}
-  batteryMaxValue: 10
+  batteryMaxValue: 8
   gradient:
     serializedVersion: 2
     key0: {r: 1, g: 0, b: 0, a: 1}

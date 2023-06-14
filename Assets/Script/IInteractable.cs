@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IInteractable
 {
-    public void UseInteractable(PlayerMovement player);
+    public bool UseInteractable(Vector3Int objUsing);
 }

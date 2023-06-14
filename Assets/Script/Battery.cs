@@ -22,9 +22,10 @@ public class Battery : MonoBehaviour, IInteractable
         transform.position += new Vector3(0, -Mathf.Sin(Time.time * bounceSpeedMultiplier) * 0.01f * bounceMultiplier, 0);
     }
 
-    public void UseInteractable(PlayerMovement player)
+    public bool UseInteractable(Vector3Int objUsing)
     {
-        player.ChangeBatteryValue(batteryValue);
+        GridManager.Instance.GetGridObject(objUsing).GetComponent<PlayerMovement>().ChangeBatteryValue(batteryValue);
         Destroy(gameObject, 0.2f);
+        return true;
     }
 }

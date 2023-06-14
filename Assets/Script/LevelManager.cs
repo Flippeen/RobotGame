@@ -21,4 +21,8 @@ public class LevelManager : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+    public void GoToLevelEditor()
+    {
+        SceneManager.LoadScene("LevelEditor");
+    }
 }

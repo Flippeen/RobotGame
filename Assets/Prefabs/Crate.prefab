@@ -12,8 +12,7 @@ GameObject:
   - component: {fileID: 180399272674952644}
   - component: {fileID: 525576556928806996}
   - component: {fileID: 1101104418379003179}
-  - component: {fileID: 4668665504176670520}
-  - component: {fileID: 2217656832134206662}
+  - component: {fileID: 9074039630606581041}
   m_Layer: 0
   m_Name: Crate
   m_TagString: Untagged
@@ -97,7 +96,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4668665504176670520
+--- !u!114 &9074039630606581041
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -106,19 +105,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 5021476601216107911}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a2ace54c83cc204aa0c4ae33f9f6c13, type: 3}
+  m_Script: {fileID: 11500000, guid: f4bb6bf34ef6858459ef9ed13174c061, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2217656832134206662
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5021476601216107911}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0c778fb4decbad4d9cc2273d38ad252, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  objectID: 1
   gridPosition: {x: 0, y: 0, z: 0}
+  isPushable: 1

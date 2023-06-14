@@ -9,23 +9,32 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 79111051d577185429672faeadfa2c3a
   - enabled: 1
+    path: Assets/Scenes/GameScene.unity
+    guid: 40f2c5401d4d3c647b719102581e45c1
+  - enabled: 1
     path: Assets/Scenes/Level_1.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
+    guid: 767e33adb5e92c4479eea88a9f2cc900
   - enabled: 1
     path: Assets/Scenes/Level_2.unity
-    guid: 94526fe1df4c9a541b3e389e0a67f38a
+    guid: d3407b64b0e8b3941ae64f76af6263a7
   - enabled: 1
     path: Assets/Scenes/Level_3.unity
-    guid: 14cbb50c587f8e644964472386d297d9
+    guid: a0dae7fe0207bd2499e3a9228d3a024b
   - enabled: 1
     path: Assets/Scenes/Level_4.unity
-    guid: b2458fde6de60424e88671704bce749b
+    guid: 262c0b347d73fb14b9e7a3157fe67d0d
   - enabled: 1
     path: Assets/Scenes/Level_5.unity
-    guid: da78d94ce5085fa4799c17eeadebcf10
+    guid: fca786f8af79a6442acc8a4ff3d67901
   - enabled: 1
     path: Assets/Scenes/Level_6.unity
-    guid: 63eb05ff2ace1a64199e08173592d538
+    guid: bb12ac54848fa754a89469d308eb1eb9
+  - enabled: 1
+    path: Assets/Scenes/Level_7.unity
+    guid: daeb2bfc03a5abc4486010920712cccc
+  - enabled: 1
+    path: Assets/Scenes/LevelEditor.unity
+    guid: 2214edc797fe93240aa99fcff8fd725d
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 72e02b573170a79409d76066f4fb75a8, type: 2}
     UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: ca8adec76d6a7164e818e00092f65af8, type: 2}

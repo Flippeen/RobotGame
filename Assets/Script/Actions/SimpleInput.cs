@@ -7,10 +7,10 @@ using UnityEngine.Events;
 
 public class SimpleInput : MonoBehaviour
 {
-    [SerializeField] UnityEvent myEvent;
+    [SerializeField] MovementOptions methodName;
 
     public void AddToQueue()
     {
-        GetComponentInParent<PlayerMovement>().AddEventToQueue(myEvent);
+        GetComponentInParent<MoveObjectController>().AddToQueue(methodName.ToString());
     }
 }

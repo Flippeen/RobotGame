@@ -1,21 +1,21 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class CameraController : MonoBehaviour
 {
     Vector3Int gridSize;
     Vector3 centerPoint;
     [SerializeField] float minDistance, maxDistance;
+    [SerializeField] float zoomSpeed;
     [SerializeField] int panSpeed;
-    public List<Canvas> robotUIs = new List<Canvas>();
+    List<Canvas> robotUIs = new List<Canvas>();
+    bool canZoom;
     private void Awake()
     {
-        PlayerMovement[] players = FindObjectsOfType<PlayerMovement>();
-        foreach (var player in players)
-        {
-            robotUIs.Add(player.GetComponentInChildren<Canvas>());
-        }
+        SetPlayersUI();
     }
     void Start()
     {
@@ -24,10 +24,11 @@ public class CameraController : MonoBehaviour
         transform.position = centerPoint + (Vector3.left * ((float)gridSize.x));
         transform.forward = centerPoint - transform.position;
         maxDistance = gridSize.magnitude;
+        canZoom = true;
     }
     void Update()
     {
-        if (!robotUIs.TrueForAll(item => !item.gameObject.activeSelf))
+        if (!robotUIs.TrueForAll(item => !item.gameObject.activeSelf) || GameHUD.Instance.IsPausMenuOpen() || IsPointerOverUIObject())
             return;
 
         if (Input.GetMouseButton(0) && SystemInfo.deviceType == DeviceType.Desktop)
@@ -39,19 +40,11 @@ public class CameraController : MonoBehaviour
         {
             float yValue = Input.GetAxis("Mouse Y");
             ZoomCamera(yValue);
-            //if (yValue < 0 && (centerPoint - transform.position).magnitude > maxDistance)
-            //    return;
-            //if (yValue > 0 && (centerPoint - transform.position).magnitude < minDistance)
-            //    return;
-
-            //transform.position += (centerPoint - transform.position).normalized * yValue;
         }
         if(Input.touchCount == 1)
         {
-            print("One touch");
-
-            transform.RotateAround(centerPoint, Vector3.up, Input.GetTouch(0).deltaPosition.x * Time.fixedDeltaTime * panSpeed);
-            transform.RotateAround(centerPoint, transform.right, -Input.GetTouch(0).deltaPosition.y * Time.fixedDeltaTime * panSpeed);
+            transform.RotateAround(centerPoint, Vector3.up, Input.GetTouch(0).deltaPosition.x * Time.deltaTime * panSpeed);
+            transform.RotateAround(centerPoint, transform.right, -Input.GetTouch(0).deltaPosition.y * Time.deltaTime * panSpeed);
         }
         if(Input.touchCount == 2)
         {
@@ -66,31 +59,36 @@ public class CameraController : MonoBehaviour
 
             float diff = currMag - prevMag;
             diff = Mathf.Clamp(diff, -50, 50);
-            print(diff);
-            ZoomCamera(diff * Time.fixedDeltaTime);
-            //if (diff > 0.1f)
-            //{
-            //    print("Two touch" + diff);
-            //    if (diff > 0 && (centerPoint - transform.position).magnitude < maxDistance)
-            //    {
-            //        transform.position += (centerPoint - transform.position).normalized * diff;
-            //    }
-            //    if(diff < 0 && (centerPoint - transform.position).magnitude > minDistance)
-            //    {
-            //        transform.position += (centerPoint - transform.position).normalized * diff;
-            //    }
-            //}
-
+            ZoomCamera(diff * Time.deltaTime);
         }
     }
 
     void ZoomCamera(float increment)
     {
+        if (!canZoom)
+            return;
         if (increment < 0 && (centerPoint - transform.position).magnitude > maxDistance)
             return;
         if (increment > 0 && (centerPoint - transform.position).magnitude < minDistance)
             return;
+        Vector3 cameraMovement = (centerPoint - transform.position).normalized * increment;
+        transform.position += Vector3.ClampMagnitude(cameraMovement, zoomSpeed);
+    }
 
-        transform.position += (centerPoint - transform.position).normalized * increment;
+    void SetPlayersUI()
+    {
+        PlayerMovement[] players = FindObjectsOfType<PlayerMovement>();
+        foreach (var player in players)
+        {
+            robotUIs.Add(player.GetComponentInChildren<Canvas>());
+        }
+    }
+    private bool IsPointerOverUIObject()
+    {
+        PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
+        eventDataCurrentPosition.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+        List<RaycastResult> results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
+        return results.Count > 0;
     }
 }

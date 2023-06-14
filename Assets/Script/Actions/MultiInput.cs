@@ -7,7 +7,7 @@ using UnityEngine.Events;
 
 public class MultiInput : MonoBehaviour
 {
-    [SerializeField] UnityEvent myEvent;
+    [SerializeField] MovementOptions methodName;
     TMPro.TMP_InputField stepsIF;
     void Start()
     {
@@ -24,7 +24,7 @@ public class MultiInput : MonoBehaviour
 
         for (int i = 0; i < int.Parse(stepsIF.text); i++)
         {
-            FindObjectOfType<PlayerMovement>().AddEventToQueue(myEvent);
+            FindObjectOfType<PlayerMovement>().AddToQueue(methodName.ToString());
         }
     }
 }
